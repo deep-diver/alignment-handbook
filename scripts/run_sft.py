@@ -200,12 +200,12 @@ def main():
     logger.info(f"Model saved to {training_args.output_dir}")
 
     # Save everything else on main process
-    kwargs = {
-        "finetuned_from": model_args.model_name_or_path,
-        "dataset": list(data_args.dataset_mixer.keys()),
-        "dataset_tags": list(data_args.dataset_mixer.keys()),
-        "tags": ["alignment-handbook"],
-    }
+    # kwargs = {
+    #     "finetuned_from": model_args.model_name_or_path,
+    #     "dataset": list(data_args.dataset_mixer.keys()),
+    #     "dataset_tags": list(data_args.dataset_mixer.keys()),
+    #     "tags": ["alignment-handbook"],
+    # }
     if trainer.accelerator.is_main_process:
         # trainer.create_model_card(**kwargs)
         # Restore k,v cache for fast inference
@@ -224,7 +224,7 @@ def main():
 
     if training_args.push_to_hub is True:
         logger.info("Pushing to hub...")
-        trainer.push_to_hub(**kwargs)
+        trainer.push_to_hub()
 
     logger.info("*** Training complete ***")
 
