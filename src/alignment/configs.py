@@ -179,8 +179,8 @@ class ModelArguments:
         default=None,
         metadata={"help": ("Model layers to unfreeze & train")},
     )
-    init_lora_weights: bool | Literal["pissa", "pissa_niter_4"] = field(
-        default=False,
+    init_lora_weights: Optional[str] = field(
+        default=None,
         metadata={"help": ("Whether to initialize the LoRA weights with a specific method.")},
     )
     load_in_8bit: bool = field(default=False, metadata={"help": "use 8 bit precision"})

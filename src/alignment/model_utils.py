@@ -98,6 +98,10 @@ def get_peft_config(model_args: ModelArguments) -> PeftConfig | None:
     if model_args.use_peft is False:
         return None
 
+
+    if model_args.init_lora_weights == "True":
+        model_args.init_lora_weights = True
+
     peft_config = LoraConfig(
         r=model_args.lora_r,
         lora_alpha=model_args.lora_alpha,
