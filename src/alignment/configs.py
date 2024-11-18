@@ -16,7 +16,7 @@ import dataclasses
 import os
 import sys
 from dataclasses import dataclass, field
-from typing import Any, Dict, List, NewType, Optional, Tuple
+from typing import Any, Dict, List, NewType, Optional, Tuple, Literal
 
 from transformers import MODEL_FOR_CAUSAL_LM_MAPPING, HfArgumentParser
 
@@ -178,6 +178,10 @@ class ModelArguments:
     lora_modules_to_save: Optional[List[str]] = field(
         default=None,
         metadata={"help": ("Model layers to unfreeze & train")},
+    )
+    init_lora_weights: bool | Literal["pissa", "pissa_niter_4"] = field(
+        default=False,
+        metadata={"help": ("Whether to initialize the LoRA weights with a specific method.")},
     )
     load_in_8bit: bool = field(default=False, metadata={"help": "use 8 bit precision"})
     load_in_4bit: bool = field(default=False, metadata={"help": "use 4 bit precision"})

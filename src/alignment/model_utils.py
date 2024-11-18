@@ -102,6 +102,7 @@ def get_peft_config(model_args: ModelArguments) -> PeftConfig | None:
         r=model_args.lora_r,
         lora_alpha=model_args.lora_alpha,
         lora_dropout=model_args.lora_dropout,
+        init_lora_weights=model_args.init_lora_weights,
         bias="none",
         task_type="CAUSAL_LM",
         target_modules=model_args.lora_target_modules,
